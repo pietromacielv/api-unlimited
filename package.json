@@ -1,0 +1,11 @@
+{
+  "name": "url-shortener-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "memory-cache": "^0.2.0",
+    "shortid": "^2.2.16"
+  }
+}
