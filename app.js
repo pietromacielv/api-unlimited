@@ -25,7 +25,7 @@ app.post("/ai", async (req, res) => {
   try {
     await Bard.init("ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv8d6DPqAt6KW5Ld4YOROA.")
 
-    const response = await askAI({content})
+    const response = await askAI(content)
     res.json({ response })
   } catch (error) {
     console.error("Error generating AI response")
