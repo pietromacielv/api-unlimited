@@ -1,3 +1,4 @@
+import Bard, { askAI } from "bard-ai";
 const express = require("express");
 const shortid = require("shortid");
 
@@ -11,6 +12,25 @@ const cyclicUrl = process.env.CYCLIC_URL || `http://localhost:${port}`;
 
 // Create a variable to store the short URLs in Cyclic
 let urlMap = {};
+
+app.post("/ai", async (req, res) => {
+  const { content } = req.body;
+
+  if (!content) {
+    return res.status(400).json({
+      error: "Content parameter is missing."
+    })
+  }
+
+  try {
+    await Bard.init("ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv8d6DPqAt6KW5Ld4YOROA.")
+
+    const response = await askAI({content})
+    res.json({ response })
+  } catch (error) {
+    console.error("Error generating AI response")
+  }
+});
 
 // Endpoint to shorten a URL
 app.post("/shorten", async (req, res) => {

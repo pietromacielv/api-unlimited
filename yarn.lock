@@ -15,6 +15,11 @@ array-flatten@1.1.1:
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha512-PCVAQswWemu6UdxsDFFX/+gVeYqKAod3D3UVm91jHwynguOwAvYPhx8nNlM++NqRcK6CxxpUafjmhIdKiHibqg==
 
+bard-ai@^1.5.4:
+  version "1.5.4"
+  resolved "https://registry.yarnpkg.com/bard-ai/-/bard-ai-1.5.4.tgz#2d0ebc87104ed77edebcdf4236c878621c1e9438"
+  integrity sha512-YZEKQtmoCTgJh8xQx9kfSNhmcj3s48us30zN3WVowqQT+xXE8T4p4SL3h+Xr8vGVbK8dIYxtNz5wqI9SbuCPGw==
+
 body-parser@1.20.1:
   version "1.20.1"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.20.1.tgz#b1812a8912c195cd371a3ee5e66faa2338a5c668"
