@@ -1,6 +1,6 @@
 import Bard, { askAI } from "bard-ai";
-const express = import("express");
-const shortid = import("shortid");
+import { express } from "express";
+import shortid from "shortid";
 
 const app = express();
 const port = 3000;
