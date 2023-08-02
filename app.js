@@ -1,5 +1,5 @@
 import Bard, { askAI } from "bard-ai";
-import { express } from "express";
+import express from "express";
 import shortid from "shortid";
 
 const app = express();
