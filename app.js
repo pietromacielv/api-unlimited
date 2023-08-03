@@ -1,4 +1,4 @@
-import Bard, { askAI } from "bard-ai";
+import { Bard } from "googlebard";
 import express from "express";
 import shortid from "shortid";
 
@@ -13,22 +13,27 @@ const cyclicUrl = process.env.CYCLIC_URL || `http://localhost:${port}`;
 // Create a variable to store the short URLs in Cyclic
 let urlMap = {};
 
+let cookies = `__Secure-1PSID=ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv8d6DPqAt6KW5Ld4YOROA.`;
+
+const bot = new Bard(cookies)
+
+const conversationId = "123north";
+
 app.post("/ai", async (req, res) => {
   const { content } = req.body;
 
   if (!content) {
     return res.status(400).json({
-      error: "Content parameter is missing."
-    })
+      error: "Content parameter is missing.",
+    });
   }
 
   try {
-    await Bard.init("ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv8d6DPqAt6KW5Ld4YOROA.")
-
-    const response = await askAI(content)
-    res.json({ response })
+    const response = await bot.ask(content, conversationId);
+    res.json({ response });
   } catch (error) {
-    console.error("Error generating AI response")
+    console.log(content);
+    console.error("Error generating AI response");
   }
 });
 
