@@ -19,10 +19,12 @@ const bot = new Bard(cookies)
 
 const conversationId = "123north";
 
-app.delete("/ai", async (res) => {
+app.delete("/ai", async (req, res) => {
   try {
     bot.resetConversation(conversationId)
-    return res.status(200)
+    return res.status(200).json({
+      achieved: "Chat deleted successfully"
+    })
   } catch (error) {
     console.log(error)
   }
