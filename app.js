@@ -17,7 +17,7 @@ let cookies = `__Secure-1PSID=ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv
 
 const bot = new Bard(cookies);
 
-app.post("/ai", async (req, res) => {
+app.post("/ai/reset", async (req, res) => {
   try {
     const { conversationId } = req.body;
     bot.resetConversation(conversationId);
