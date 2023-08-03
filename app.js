@@ -15,23 +15,22 @@ let urlMap = {};
 
 let cookies = `__Secure-1PSID=ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv8d6DPqAt6KW5Ld4YOROA.`;
 
-const bot = new Bard(cookies)
-
-const conversationId = "123north";
-
-app.delete("/ai", async (req, res) => {
-  try {
-    bot.resetConversation(conversationId)
-    return res.status(200).json({
-      achieved: "Chat deleted successfully"
-    })
-  } catch (error) {
-    console.log(error)
-  }
-})
+const bot = new Bard(cookies);
 
 app.post("/ai", async (req, res) => {
-  const { content } = req.body;
+  try {
+    const { conversationId } = req.body;
+    bot.resetConversation(conversationId);
+    return res.status(200).json({
+      achieved: "Chat deleted successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post("/ai", async (req, res) => {
+  const { content, conversationId } = req.body;
 
   if (!content) {
     return res.status(400).json({
