@@ -19,6 +19,15 @@ const bot = new Bard(cookies)
 
 const conversationId = "123north";
 
+app.delete("/ai", async (res) => {
+  try {
+    bot.resetConversation(conversationId)
+    return res.status(200)
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 app.post("/ai", async (req, res) => {
   const { content } = req.body;
 
