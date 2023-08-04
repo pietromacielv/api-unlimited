@@ -13,7 +13,7 @@ const cyclicUrl = process.env.CYCLIC_URL || `http://localhost:${port}`;
 // Create a variable to store the short URLs in Cyclic
 let urlMap = {};
 
-let cookies = `__Secure-1PSID=ZQiDSsmclc_zVdhzglByPlYfoskiQnRBm4cKMq86T_bOeQFTAv8d6DPqAt6KW5Ld4YOROA.`;
+let cookies = `__Secure-1PSID=${process.env.COOKIE_KEY}`;
 
 const bot = new Bard(cookies);
 
