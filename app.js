@@ -11,21 +11,19 @@ const cyclicUrl = process.env.CYCLIC_URL || `http://localhost:${port}`;
 
 let urlMap = {};
 
-const BardAI = new Bard("ZgiDSmipoSeJs8LQJj7UWyJZXuUBChF9Wc316-2sNZKWNRGjkKfL3RDOgPByHihMBx9OuA.");
+const BardAI = new Bard(process.env.COOKIE_KEY);
 const convo = BardAI.createChat();
 
 app.get("/ai/reset", async (req, res) => {
   try {
-    new Bard(
-      "ZgiDSmipoSeJs8LQJj7UWyJZXuUBChF9Wc316-2sNZKWNRGjkKfL3RDOgPByHihMBx9OuA."
-    );
+    new Bard(process.env.COOKIE_KEY);
     return res.status(200).json({
-      success: 'Resetado com sucesso.'
-    })
+      success: "Resetado com sucesso.",
+    });
   } catch (error) {
-    return console.log(error)
+    return console.log(error);
   }
-})
+});
 
 app.post("/ai", async (req, res) => {
   const { content } = req.body;
@@ -37,9 +35,7 @@ app.post("/ai", async (req, res) => {
   }
 
   try {
-    const response = await convo.ask(content, {
-      format: Bard.JSON,
-    });
+    const response = await convo.ask(content);
     res.json({ response });
   } catch (error) {
     console.log(content);
