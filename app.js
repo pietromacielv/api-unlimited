@@ -1,5 +1,5 @@
-import { Bard } from "googlebard";
-import express from "express";
+import Bard from "bard-ai";
+import express, { request } from "express";
 import shortid from "shortid";
 
 const app = express();
@@ -7,30 +7,28 @@ const port = 3000;
 
 app.use(express.json());
 
-// Get the Cyclic URL from the environment variable
 const cyclicUrl = process.env.CYCLIC_URL || `http://localhost:${port}`;
 
-// Create a variable to store the short URLs in Cyclic
 let urlMap = {};
 
-let cookies = `__Secure-1PSID=${process.env.COOKIE_KEY}`;
+const BardAI = new Bard("ZgiDSmipoSeJs8LQJj7UWyJZXuUBChF9Wc316-2sNZKWNRGjkKfL3RDOgPByHihMBx9OuA.");
+const convo = BardAI.createChat();
 
-const bot = new Bard(cookies);
-
-app.post("/ai/reset", async (req, res) => {
+app.get("/ai/reset", async (req, res) => {
   try {
-    const { conversationId } = req.body;
-    bot.resetConversation(conversationId);
+    new Bard(
+      "ZgiDSmipoSeJs8LQJj7UWyJZXuUBChF9Wc316-2sNZKWNRGjkKfL3RDOgPByHihMBx9OuA."
+    );
     return res.status(200).json({
-      achieved: "Chat deleted successfully",
-    });
+      success: 'Resetado com sucesso.'
+    })
   } catch (error) {
-    console.log(error);
+    return console.log(error)
   }
-});
+})
 
 app.post("/ai", async (req, res) => {
-  const { content, conversationId } = req.body;
+  const { content } = req.body;
 
   if (!content) {
     return res.status(400).json({
@@ -39,7 +37,9 @@ app.post("/ai", async (req, res) => {
   }
 
   try {
-    const response = await bot.ask(content, conversationId);
+    const response = await convo.ask(content, {
+      format: Bard.JSON,
+    });
     res.json({ response });
   } catch (error) {
     console.log(content);
