@@ -3,8 +3,7 @@ import Bard from "bard-ai";
 
 const aiRoutes = express.Router();
 const BardAI = new Bard(
-  process.env.COOKIE_KEY ||
-    "aAiDShnHw6mM_b1ASERC-HPxpQKN7-XwTFJbHyg_MxuktPvEXzvpgKJwvBGhB41GHAyWqA."
+  process.env.COOKIE_KEY
 );
 const convo = BardAI.createChat();
 
