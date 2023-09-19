@@ -16,7 +16,7 @@ shortenUrlRoutes.post("/shorten", async (req, res) => {
   try {
     const shortId = shortid.generate(); // Generate a random short ID
     urlMap[shortId] = url;
-    const shortUrl = `${cyclicUrl}/${shortId}`; // Use the Cyclic URL
+    const shortUrl = `${cyclicUrl}/api/${shortId}`; // Use the Cyclic URL
     res.json({ shortUrl });
   } catch (error) {
     console.error("Error generating short ID:", error);
