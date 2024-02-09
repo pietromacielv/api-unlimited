@@ -3,7 +3,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const aiRoutes = express.Router();
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+const model = genAI.getGenerativeModel({ model: "gemini-pro-vision" });
+
 const chat = model.startChat();
 
 aiRoutes.post("/ai", async (req, res) => {
