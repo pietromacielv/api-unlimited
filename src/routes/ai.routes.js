@@ -1,5 +1,5 @@
 import express from "express";
-import GoogleGenerativeAI from "@google/generative-ai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const aiRoutes = express.Router();
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
