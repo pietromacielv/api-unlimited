@@ -41,7 +41,7 @@ aiRoutes.post("/ai", async (req, res) => {
     const result = await chat.sendMessage(content);
     const response = await result.response;
     logFields(response);
-    const text = response.text();
+    const text = response.text() || "Tente de novo com outro prompt"
     res.json({ text });
   } catch (error) {
     console.error("Error generating AI response:", error);
