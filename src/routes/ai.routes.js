@@ -1,11 +1,9 @@
 import express from "express";
-import Bard from "bard-ai";
+import GoogleGenerativeAI from "@google/generative-ai";
 
 const aiRoutes = express.Router();
-const BardAI = new Bard(
-  process.env.COOKIE_KEY
-);
-const convo = BardAI.createChat();
+const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 aiRoutes.post("/ai", async (req, res) => {
   const { content } = req.body;
@@ -15,8 +13,10 @@ aiRoutes.post("/ai", async (req, res) => {
     });
   }
   try {
-    const response = await convo.ask(content);
-    res.json({ response });
+    const result = await model.generateContent(content);
+    const response = await result.response;
+    const text = response.text();
+    res.json({ text });
   } catch (error) {
     console.error("Error generating AI response:", error);
     res.status(500).json({
