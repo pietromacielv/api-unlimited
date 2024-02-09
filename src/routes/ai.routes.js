@@ -40,7 +40,10 @@ aiRoutes.post("/ai", async (req, res) => {
   try {
     const result = await chat.sendMessage(content);
     const response = await result.response;
-    const text = response.text() || "Tente de novo com outro prompt"
+    const text = response.text() || "Tente de novo com outro prompt";
+    if (text === "Tente de novo com outro prompt") {
+      model.startChat({ safetySettings });
+    }
     res.json({ text });
   } catch (error) {
     console.error("Error generating AI response:", error);
