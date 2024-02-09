@@ -5,7 +5,11 @@ const aiRoutes = express.Router();
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
-const chat = model.startChat();
+const chat = model.startChat({
+  generationConfig: {
+    maxOutputTokens: 2000,
+  },
+});
 
 aiRoutes.post("/ai", async (req, res) => {
   const { content } = req.body;
